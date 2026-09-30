@@ -1,0 +1,16 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Indexes and eval results are generated per machine
+agent_index.json
+indexes/
+evals/results/
+
+# macOS
+.DS_Store
+
+# learning scripts
+learning/00-basics/basics_index.json

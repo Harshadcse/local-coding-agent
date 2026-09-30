@@ -1,0 +1,4 @@
+fastapi==0.141.1
+langgraph==1.2.12
+requests==2.34.2
+uvicorn==0.54.0

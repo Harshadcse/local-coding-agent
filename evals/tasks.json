@@ -1,0 +1,40 @@
+{
+  "_about": "Fixed tasks on examples/demo_app for measuring the agent. Index the demo app first: python -m agent.cli index examples/demo_app. A run PASSES when the checker passes AND every must_contain regex matches the edited file AND no must_not_contain regex matches.",
+  "tasks": [
+    {
+      "id": "config-endpoint",
+      "file": "lib/config/app_config.dart",
+      "task": "Add a logoutPath constant for '/auth/logout', following the pattern of the existing path constants.",
+      "must_contain": ["logoutPath\\s*=\\s*'/auth/logout'"],
+      "must_not_contain": []
+    },
+    {
+      "id": "add-logout",
+      "file": "lib/services/auth_service.dart",
+      "task": "Add a logout() method that resets cnt to 0 and logs 'logout' with AppLogger.log from app_logger.dart.",
+      "must_contain": ["logout\\s*\\(", "AppLogger\\.log"],
+      "must_not_contain": []
+    },
+    {
+      "id": "review-fix",
+      "file": "lib/services/auth_service.dart",
+      "task": "Replace every print() call with AppLogger.log() from app_logger.dart, as required by the coding standard.",
+      "must_contain": ["AppLogger\\.log"],
+      "must_not_contain": ["\\bprint\\("]
+    },
+    {
+      "id": "user-tojson",
+      "file": "lib/models/user.dart",
+      "task": "Add a toJson() method that returns a Map with the keys id, name and email.",
+      "must_contain": ["Map<String,\\s*dynamic>\\s+toJson\\s*\\("],
+      "must_not_contain": []
+    },
+    {
+      "id": "api-try-catch",
+      "file": "lib/services/api_client.dart",
+      "task": "Wrap the body of get() in try/catch and return null if any exception is thrown.",
+      "must_contain": ["try\\s*\\{", "catch\\s*\\("],
+      "must_not_contain": []
+    }
+  ]
+}

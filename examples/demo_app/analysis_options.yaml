@@ -1,0 +1,5 @@
+# Keep the analyzer quiet about style so the demo focuses on the team's
+# own coding standard (coding_standard.md), reviewed by the agent.
+analyzer:
+  errors:
+    avoid_print: ignore

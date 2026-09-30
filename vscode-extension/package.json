@@ -1,0 +1,126 @@
+{
+  "name": "local-coding-agent",
+  "displayName": "Local Coding Agent",
+  "description": "Offline coding agent (Ollama + RAG + LangGraph): chat, coding-standards check & fix.",
+  "version": "1.0.0",
+  "publisher": "harshadcse",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Harshadcse/local-coding-agent"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters",
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "localAgent",
+          "title": "Local Agent",
+          "icon": "$(hubot)"
+        }
+      ]
+    },
+    "views": {
+      "localAgent": [
+        {
+          "type": "webview",
+          "id": "localAgent.chat",
+          "name": "Chat"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "localAgent.checkFile",
+        "title": "Local Agent: Check Coding Standards"
+      },
+      {
+        "command": "localAgent.fixFile",
+        "title": "Local Agent: Fix Coding Standards in This File"
+      },
+      {
+        "command": "localAgent.doTask",
+        "title": "Local Agent: Change This File..."
+      },
+      {
+        "command": "localAgent.health",
+        "title": "Local Agent: Server Status"
+      },
+      {
+        "command": "localAgent.startServer",
+        "title": "Local Agent: Start Server"
+      },
+      {
+        "command": "localAgent.stopServer",
+        "title": "Local Agent: Stop Server"
+      },
+      {
+        "command": "localAgent.toggleServer",
+        "title": "Local Agent: Start/Stop Server"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "localAgent.checkFile",
+          "group": "localAgent@1"
+        },
+        {
+          "command": "localAgent.fixFile",
+          "group": "localAgent@2"
+        },
+        {
+          "command": "localAgent.doTask",
+          "group": "localAgent@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Local Coding Agent",
+      "properties": {
+        "localAgent.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:8765",
+          "description": "URL of the local agent server (uvicorn agent.server:app --port 8765)."
+        },
+        "localAgent.useLlmRules": {
+          "type": "boolean",
+          "default": true,
+          "description": "Also check LLM-judged rules (slower). Off = linter + regex rules only."
+        },
+        "localAgent.agentFolder": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the learn-agent folder (contains venv/ and agent/). Asked on first Start Server."
+        },
+        "localAgent.model": {
+          "type": "string",
+          "default": "",
+          "description": "Chat model chosen in the chat dropdown (re-applied when the server starts). Empty = server default."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "package": "vsce package --allow-missing-repository"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.0.0",
+    "typescript": "^5.4.0"
+  }
+}

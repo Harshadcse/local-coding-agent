@@ -8,6 +8,8 @@ LLM ([Ollama](https://ollama.com)), retrieval-augmented generation (RAG),
 
 No cloud, no API keys, no code leaves your machine.
 
+> Built as a personal learning project to explore local LLMs, RAG and AI agents.
+
 ```
 ┌──────────── VS Code ────────────┐        ┌──────── Python agent (FastAPI) ────────┐      ┌─ Ollama ─┐
 │ Chat panel: Ask · Edit · Review │  HTTP  │ RAG: index → search → rerank           │      │ chat LLM │
